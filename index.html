@@ -1,0 +1,68 @@
+
+<html>
+  <head>
+    <style>
+    @media print{    
+      .no-print, .no-print * {
+        display: none !important;
+      }
+    }
+    </style>
+  </head>
+    <body>
+    
+    <div class="no-print">  
+    <input type="file" id="upload">
+
+        <button onclick="process()">Enter</button>
+    </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        Staatsanwaltschaft Zürich-Sihl<br>
+        Postfach <br>
+        <br>
+        8004 Zürich
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <b>Anzeige Parkverstoss</b><br> 
+        <br>
+        Sehr geehrte Damen und Herren,<br>
+
+        <br>
+        <b>Anlage: Fotos</b>
+        <br>
+
+
+    </body>
+</html>
+
+
+
+<script>
+    function process() {
+      var elm = document.getElementById('upload')
+      var img = elm.files[0]
+      var reader = new FileReader()
+      var binary
+      var base64
+      reader.addEventListener('loadend', function () {
+        binary = reader.result; // binary data (stored as string), unsafe for most actions
+        base64 = btoa(binary); // base64 data, safer but takes up more memory
+
+        var img = document.createElement("img");
+        img.setAttribute("src", "data:image/jpeg;base64," + base64)
+        img.setAttribute("width", "50%")
+
+        document.body.appendChild(img)
+      }, false);
+      reader.readAsBinaryString(img);
+    }
+</script>
